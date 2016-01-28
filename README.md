@@ -13,17 +13,48 @@ PSRs you support to avoid any confusion with users and contributors.
 ## Install
 
 Via Composer
+Register package repository on your `composer.json` file.
+```
+"repositories": [
+  {
+    "type": "vcs",
+    "url": "https://github.com/yajra/laravel-auditable.git"
+  }
+],
+```
+
+Then install via composer:
 
 ``` bash
 $ composer require yajra/laravel-auditable
 ```
 
 ## Usage
+Update your model's migration and add `created_by` and `updated_by` field.
+```php
+Schema::create('users', function (Blueprint $table) {
+    $table->increments('id');
+    $table->string('name', 100);
+    $table->integer('created_by')->index();
+    $table->integer('updated_by')->index();
+    $table->timestamps();
+});
+```
+
+Then use `AuditableTrait` on your model.
 
 ``` php
-$skeleton = new League\Skeleton();
-echo $skeleton->echoPhrase('Hello, League!');
+namespace App;
+
+use Yajra\Auditable\AuditableTrait;
+
+class User extends Model
+{
+    use AuditableTrait;
+}
 ```
+
+And your done! The package will now automatically add a basic audit log for your model to track who inserted and last updated your records.
 
 ## Change log
 
