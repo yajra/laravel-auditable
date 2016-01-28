@@ -12,7 +12,6 @@ PSRs you support to avoid any confusion with users and contributors.
 
 ## Install
 
-Via Composer
 Register package repository on your `composer.json` file.
 ```
 "repositories": [
