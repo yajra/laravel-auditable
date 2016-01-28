@@ -16,7 +16,7 @@ class AuditableTraitObserver
      *
      * @param \Yajra\Auditable\AuditableTrait $model
      */
-    public function creating(AuditableTrait $model)
+    public function creating($model)
     {
         if (! $model->created_by) {
             $model->created_by = Auth::check() ? Auth::id() : 0;
@@ -32,7 +32,7 @@ class AuditableTraitObserver
      *
      * @param \Yajra\Auditable\AuditableTrait $model
      */
-    public function updating(AuditableTrait $model)
+    public function updating($model)
     {
         if (! $model->updated_by) {
             $model->updated_by = Auth::check() ? Auth::id() : 0;
