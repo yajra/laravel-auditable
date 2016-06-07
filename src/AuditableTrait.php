@@ -4,7 +4,6 @@ namespace Yajra\Auditable;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class AuditableTrait
@@ -18,16 +17,6 @@ use Illuminate\Support\Facades\Auth;
  */
 trait AuditableTrait
 {
-    /**
-     * Get authentication guard driver.
-     *
-     * @param string $driver
-     * @return null|string
-     */
-    public function getAuthGuard($driver = 'administrator') {
-        return auth($driver)->check() ? $driver : null;
-    }
-
     /**
      * Boot the audit trait for a model.
      *
@@ -45,7 +34,18 @@ trait AuditableTrait
      */
     public function creator()
     {
-        return $this->belongsTo(get_class(Auth::user()), $this->getCreatedByColumn());
+        return $this->belongsTo(get_class(auth($this->getAuthGuard())->user()), $this->getCreatedByColumn());
+    }
+
+    /**
+     * Get authentication guard driver.
+     *
+     * @param string $driver
+     * @return null|string
+     */
+    public function getAuthGuard($driver = 'administrator')
+    {
+        return auth($driver)->check() ? $driver : null;
     }
 
     /**
@@ -65,7 +65,7 @@ trait AuditableTrait
      */
     public function updater()
     {
-        return $this->belongsTo(get_class(Auth::user()), $this->getUpdatedByColumn());
+        return $this->belongsTo(get_class(auth($this->getAuthGuard())->user()), $this->getUpdatedByColumn());
     }
 
     /**
@@ -101,7 +101,7 @@ trait AuditableTrait
      */
     public function getUserInstance()
     {
-        $class = get_class(Auth::user());
+        $class = get_class(auth($this->getAuthGuard())->user());
 
         return new $class;
     }
@@ -130,7 +130,7 @@ trait AuditableTrait
      */
     public function scopeOwned(Builder $query)
     {
-        return $query->where($this->getQualifiedUserIdColumn(), Auth::id());
+        return $query->where($this->getQualifiedUserIdColumn(), auth($this->getAuthGuard())->id());
     }
 
     /**
