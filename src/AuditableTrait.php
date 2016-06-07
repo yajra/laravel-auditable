@@ -18,6 +18,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 trait AuditableTrait
 {
     /**
+     * Prioritized custom auth guard driver.
+     *
+     * @var string
+     */
+    protected $authGuard = 'administrator';
+
+    /**
      * Boot the audit trait for a model.
      *
      * @return void
@@ -39,13 +46,13 @@ trait AuditableTrait
 
     /**
      * Get authentication guard driver.
+     * If not authenticated on custom auth guard, will fallback to default.
      *
-     * @param string $driver
      * @return null|string
      */
-    public function getAuthGuard($driver = 'administrator')
+    public function getAuthGuard()
     {
-        return auth($driver)->check() ? $driver : null;
+        return auth($this->authGuard)->check() ? $this->authGuard : null;
     }
 
     /**
