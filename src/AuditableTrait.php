@@ -19,6 +19,16 @@ use Illuminate\Support\Facades\Auth;
 trait AuditableTrait
 {
     /**
+     * Get authentication guard driver.
+     *
+     * @param string $driver
+     * @return null|string
+     */
+    public function getAuthGuard($driver = 'administrator') {
+        return auth($driver)->check() ? $driver : null;
+    }
+
+    /**
      * Boot the audit trait for a model.
      *
      * @return void

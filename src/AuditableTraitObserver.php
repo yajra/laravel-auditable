@@ -2,8 +2,6 @@
 
 namespace Yajra\Auditable;
 
-use Illuminate\Support\Facades\Auth;
-
 /**
  * Class AuditableObserver
  *
@@ -19,11 +17,11 @@ class AuditableTraitObserver
     public function creating($model)
     {
         if (! $model->created_by) {
-            $model->created_by = Auth::check() ? Auth::id() : 0;
+            $model->created_by = auth($model->getAuthGuard())->check() ? auth($model->getAuthGuard())->id() : 0;
         }
 
         if (! $model->updated_by) {
-            $model->updated_by = Auth::check() ? Auth::id() : 0;
+            $model->updated_by = auth($model->getAuthGuard())->check() ? auth($model->getAuthGuard())->id() : 0;
         }
     }
 
@@ -35,7 +33,7 @@ class AuditableTraitObserver
     public function updating($model)
     {
         if (! $model->updated_by) {
-            $model->updated_by = Auth::check() ? Auth::id() : 0;
+            $model->updated_by = auth($model->getAuthGuard())->check() ? auth($model->getAuthGuard())->id() : 0;
         }
     }
 }
