@@ -17,12 +17,23 @@ class AuditableTraitObserver
     public function creating($model)
     {
         if (! $model->created_by) {
-            $model->created_by = auth($model->getAuthGuard())->check() ? auth($model->getAuthGuard())->id() : 0;
+            $model->created_by = $this->getAuthenticatedUserId($model);
         }
 
         if (! $model->updated_by) {
-            $model->updated_by = auth($model->getAuthGuard())->check() ? auth($model->getAuthGuard())->id() : 0;
+            $model->updated_by = $this->getAuthenticatedUserId($model);
         }
+    }
+
+    /**
+     * Get authenticated user id depending on model's auth guard.
+     *
+     * @param mixed $model
+     * @return int
+     */
+    protected function getAuthenticatedUserId($model)
+    {
+        return auth($model->getAuthGuard())->check() ? auth($model->getAuthGuard())->id() : 0;
     }
 
     /**
@@ -33,7 +44,7 @@ class AuditableTraitObserver
     public function updating($model)
     {
         if (! $model->updated_by) {
-            $model->updated_by = auth($model->getAuthGuard())->check() ? auth($model->getAuthGuard())->id() : 0;
+            $model->updated_by = $this->getAuthenticatedUserId($model);
         }
     }
 }
