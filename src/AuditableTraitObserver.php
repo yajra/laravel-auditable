@@ -28,7 +28,7 @@ class AuditableTraitObserver
     /**
      * Get authenticated user id depending on model's auth guard.
      *
-     * @param mixed $model
+     * @param \Yajra\Auditable\AuditableTrait $model
      * @return int
      */
     protected function getAuthenticatedUserId($model)
