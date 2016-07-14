@@ -18,13 +18,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 trait AuditableTrait
 {
     /**
-     * Prioritized custom auth guard driver.
-     *
-     * @var string
-     */
-    protected $authGuard = 'administrator';
-
-    /**
      * Boot the audit trait for a model.
      *
      * @return void
@@ -41,18 +34,7 @@ trait AuditableTrait
      */
     public function creator()
     {
-        return $this->belongsTo(get_class(auth($this->getAuthGuard())->user()), $this->getCreatedByColumn());
-    }
-
-    /**
-     * Get authentication guard driver.
-     * If not authenticated on custom auth guard, will fallback to default.
-     *
-     * @return null|string
-     */
-    public function getAuthGuard()
-    {
-        return auth($this->authGuard)->check() ? $this->authGuard : null;
+        return $this->belongsTo(get_class(auth()->user()), $this->getCreatedByColumn());
     }
 
     /**
@@ -72,7 +54,7 @@ trait AuditableTrait
      */
     public function updater()
     {
-        return $this->belongsTo(get_class(auth($this->getAuthGuard())->user()), $this->getUpdatedByColumn());
+        return $this->belongsTo(get_class(auth()->user()), $this->getUpdatedByColumn());
     }
 
     /**
@@ -108,7 +90,7 @@ trait AuditableTrait
      */
     public function getUserInstance()
     {
-        $class = get_class(auth($this->getAuthGuard())->user());
+        $class = get_class(auth()->user());
 
         return new $class;
     }
@@ -137,7 +119,7 @@ trait AuditableTrait
      */
     public function scopeOwned(Builder $query)
     {
-        return $query->where($this->getQualifiedUserIdColumn(), auth($this->getAuthGuard())->id());
+        return $query->where($this->getQualifiedUserIdColumn(), auth()->id());
     }
 
     /**
