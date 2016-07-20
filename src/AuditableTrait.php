@@ -2,6 +2,7 @@
 
 namespace Yajra\Auditable;
 
+use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -34,7 +35,7 @@ trait AuditableTrait
      */
     public function creator()
     {
-        return $this->belongsTo(get_class(auth()->user()), $this->getCreatedByColumn());
+        return $this->belongsTo($this->getUserInstance(), $this->getCreatedByColumn());
     }
 
     /**
@@ -54,7 +55,7 @@ trait AuditableTrait
      */
     public function updater()
     {
-        return $this->belongsTo(get_class(auth()->user()), $this->getUpdatedByColumn());
+        return $this->belongsTo($this->getUserInstance(), $this->getUpdatedByColumn());
     }
 
     /**
@@ -90,7 +91,7 @@ trait AuditableTrait
      */
     public function getUserInstance()
     {
-        $class = get_class(auth()->user());
+        $class = config('auth.providers.users.model', User::class);
 
         return new $class;
     }
