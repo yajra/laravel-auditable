@@ -7,8 +7,8 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-A simple Laravel user auditing package for Eloquent Model.
-This package automatically insert/update an audit log on table on who created and last updated a record.
+Laravel Auditable is a simple Laravel auditing package for your Eloquent Model.
+This package automatically inserts/updates an audit log on your table on who created and last updated the record.
 
 ## Install via Composer
 ``` bash
