@@ -76,9 +76,7 @@ trait AuditableTrait
     public function getCreatedByNameAttribute()
     {
         if ($this->{$this->getCreatedByColumn()}) {
-            $user = $this->getUserInstance()->find($this->{$this->getCreatedByColumn()});
-
-            return $user->first_name . ' ' . $user->last_name;
+            return $this->creator->first_name . ' ' . $this->creator->last_name;
         }
 
         return '';
@@ -104,9 +102,7 @@ trait AuditableTrait
     public function getUpdatedByNameAttribute()
     {
         if ($this->{$this->getUpdatedByColumn()}) {
-            $user = $this->getUserInstance()->find($this->{$this->getUpdatedByColumn()});
-
-            return $user->first_name . ' ' . $user->last_name;
+            return $this->updater->first_name . ' ' . $this->updater->last_name;
         }
 
         return '';
