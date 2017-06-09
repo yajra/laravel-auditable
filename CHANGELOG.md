@@ -2,6 +2,10 @@
 
 All Notable changes to `laravel-auditable` will be documented in this file
 
+## v1.1.1 - 2017-06-09
+- Use eager loading when fetching creator/udpater name.
+- Fix N+1 query.
+
 ## v1.1.0 - 2017-01-05
 - Add github templates.
 - Update license.
