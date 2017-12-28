@@ -2,6 +2,11 @@
 
 All Notable changes to `laravel-auditable` will be documented in this file
 
+## v2.0.1 - 2017-12-28
+- Fix travis.
+- Removed unused dev packages.
+- Update docs.
+
 ## v2.0.0 - 2017-12-28
 - Add auditable blueprint macro. [e0e18b5]
 - Lock support to Laravel 5.5++. [e0e18b5]
