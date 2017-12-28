@@ -11,18 +11,20 @@ Laravel Auditable is a simple Laravel auditing package for your Eloquent Model.
 This package automatically inserts/updates an audit log on your table on who created and last updated the record.
 
 ## Install via Composer
+
 ``` bash
 $ composer require yajra/laravel-auditable
 ```
 
 ## Usage
+
 Update your model's migration and add `created_by` and `updated_by` field.
+
 ```php
 Schema::create('users', function (Blueprint $table) {
     $table->increments('id');
     $table->string('name', 100);
-    $table->integer('created_by')->index();
-    $table->integer('updated_by')->index();
+    $table->auditable();
     $table->timestamps();
 });
 ```
@@ -38,6 +40,16 @@ class User extends Model
 {
     use AuditableTrait;
 }
+```
+
+## Dropping columns
+
+You can drop auditable columns using `dropAuditable()` method.
+
+```php
+Schema::create('users', function (Blueprint $table) {
+    $table->dropAuditable();
+});
 ```
 
 And your done! The package will now automatically add a basic audit log for your model to track who inserted and last updated your records.
