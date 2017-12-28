@@ -2,6 +2,9 @@
 
 All Notable changes to `laravel-auditable` will be documented in this file
 
+## v1.1.3 - 2017-12-28
+- Fix model events param type hint and doc. [893fa37]
+
 ## v1.1.2 - 2017-12-28
 - Fix setting of updated_by value column when updating. [ca34c5f]
 
