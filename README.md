@@ -18,7 +18,7 @@ $ composer require yajra/laravel-auditable
 
 ## Usage
 
-Update your model's migration and add `created_by` and `updated_by` field.
+Update your model's migration and add `created_by` and `updated_by` field using the `auditable()` blueprint macro.
 
 ```php
 Schema::create('users', function (Blueprint $table) {
