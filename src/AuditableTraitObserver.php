@@ -4,11 +4,6 @@ namespace Yajra\Auditable;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class AuditableObserver
- *
- * @package Yajra\Auditable
- */
 class AuditableTraitObserver
 {
     /**

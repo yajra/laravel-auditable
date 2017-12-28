@@ -4,18 +4,7 @@ namespace Yajra\Auditable;
 
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-/**
- * Class AuditableTrait
- *
- * @property int created_by
- * @property int updated_by
- * @method string getTable()
- * @method void observe($observer)
- * @method BelongsTo belongsTo($related, $foreignKey = null, $otherKey = null, $relation = null)
- * @package Yajra\Auditable
- */
 trait AuditableTrait
 {
     /**

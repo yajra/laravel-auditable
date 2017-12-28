@@ -17,12 +17,12 @@
         }
     ],
     "require": {
-        "php" : ">=5.5.9",
-        "illuminate/support" : "5.*",
-        "illuminate/database" : "5.*"
+        "php" : ">=7.0",
+        "illuminate/support" : "~5.5",
+        "illuminate/database" : "~5.5"
     },
     "require-dev": {
-        "phpunit/phpunit" : "4.*",
+        "phpunit/phpunit" : "6.*",
         "scrutinizer/ocular": "~1.1",
         "squizlabs/php_codesniffer": "~2.3"
     },
@@ -41,7 +41,12 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "2.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Yajra\\Auditable\\AuditableServiceProvider"
+            ]
         }
     }
 }
