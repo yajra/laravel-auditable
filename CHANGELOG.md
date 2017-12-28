@@ -2,6 +2,9 @@
 
 All Notable changes to `laravel-auditable` will be documented in this file
 
+## v1.1.2 - 2017-12-28
+- Fix setting of updated_by value column when updating. [ca34c5f]
+
 ## v1.1.1 - 2017-06-09
 - Use eager loading when fetching creator/udpater name.
 - Fix N+1 query.
@@ -13,7 +16,7 @@ All Notable changes to `laravel-auditable` will be documented in this file
 
 ## v1.0.0 - 2016-11-18
 - Release stable version.
-- Add []official docs](https://yajrabox.com/docs/laravel-auditable).
+- Add [official docs](https://yajrabox.com/docs/laravel-auditable).
 
 ### v1.0.0-dev
 - Register package to packagist.
