@@ -1,50 +1,50 @@
 {
-    "name": "yajra/laravel-auditable",
-    "description": "A simple Laravel user auditing package for Eloquent Model.",
-    "keywords": [
-        "yajra",
-        "laravel",
-        "auditable"
-    ],
-    "homepage": "https://github.com/yajra/laravel-auditable",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Arjay Angeles",
-            "email": "aqangeles@gmail.com",
-            "homepage": "http://yajrabox.com",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php" : ">=7.0",
-        "illuminate/support" : "~5.5",
-        "illuminate/database" : "~5.5"
-    },
-    "require-dev": {
-        "phpunit/phpunit" : "6.*"
-    },
-    "autoload": {
-        "psr-4": {
-            "Yajra\\Auditable\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Yajra\\Auditable\\Test\\": "tests"
-        }
-    },
-    "scripts": {
-        "test": "phpunit"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.0-dev"
-        },
-        "laravel": {
-            "providers": [
-                "Yajra\\Auditable\\AuditableServiceProvider"
-            ]
-        }
+  "name": "yajra/laravel-auditable",
+  "description": "A simple Laravel user auditing package for Eloquent Model.",
+  "keywords": [
+    "yajra",
+    "laravel",
+    "auditable"
+  ],
+  "homepage": "https://github.com/yajra/laravel-auditable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Arjay Angeles",
+      "email": "aqangeles@gmail.com",
+      "homepage": "http://yajrabox.com",
+      "role": "Developer"
     }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "illuminate/support": "~5.5",
+    "illuminate/database": "~5.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Yajra\\Auditable\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Yajra\\Auditable\\Test\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2.0-dev"
+    },
+    "laravel": {
+      "providers": [
+        "Yajra\\Auditable\\AuditableServiceProvider"
+      ]
+    }
+  }
 }
