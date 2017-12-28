@@ -2,6 +2,8 @@
 
 namespace Yajra\Auditable;
 
+use Illuminate\Database\Eloquent\Model;
+
 /**
  * Class AuditableObserver
  *
@@ -12,9 +14,9 @@ class AuditableTraitObserver
     /**
      * Model's creating event hook.
      *
-     * @param \Yajra\Auditable\AuditableTrait $model
+     * @param Model $model
      */
-    public function creating($model)
+    public function creating(Model $model)
     {
         if (! $model->created_by) {
             $model->created_by = $this->getAuthenticatedUserId();
@@ -38,9 +40,9 @@ class AuditableTraitObserver
     /**
      * Model's updating event hook.
      *
-     * @param \Yajra\Auditable\AuditableTrait $model
+     * @param Model $model
      */
-    public function updating($model)
+    public function updating(Model $model)
     {
         if (! $model->isDirty('updated_by')) {
             $model->updated_by = $this->getAuthenticatedUserId();
