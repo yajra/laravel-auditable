@@ -42,7 +42,7 @@ class AuditableTraitObserver
      */
     public function updating($model)
     {
-        if (! $model->updated_by) {
+        if (! $model->isDirty('updated_by')) {
             $model->updated_by = $this->getAuthenticatedUserId();
         }
     }
