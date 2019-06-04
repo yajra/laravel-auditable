@@ -51,7 +51,7 @@ class AuditableTraitObserver
      */
     public function deleting(Model $model)
     {
-        if (! $model->isDirty('deleted_by')) {
+        if (! $model->deleted_by) {
             $model->deleted_by = $this->getAuthenticatedUserId();
         }
     }
