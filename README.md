@@ -42,9 +42,23 @@ class User extends Model
 }
 ```
 
+## Soft Deletes
+
+If you wish to use Laravel's soft deletes, use the `auditableWithDeletes()` method on your migration instead:
+
+```php
+Schema::create('users', function (Blueprint $table) {
+    $table->increments('id');
+    $table->string('name', 100);
+    $table->auditableWithDeletes();
+    $table->timestamps();
+    $table->softDeletes()
+});
+```
+
 ## Dropping columns
 
-You can drop auditable columns using `dropAuditable()` method.
+You can drop auditable columns using `dropAuditable()` method, or `dropAuditableWithDeletes()` if using soft deletes.
 
 ```php
 Schema::create('users', function (Blueprint $table) {
@@ -52,7 +66,7 @@ Schema::create('users', function (Blueprint $table) {
 });
 ```
 
-And your done! The package will now automatically add a basic audit log for your model to track who inserted and last updated your records.
+And you're done! The package will now automatically add a basic audit log for your model to track who inserted and last updated your records.
 
 ## Change log
 

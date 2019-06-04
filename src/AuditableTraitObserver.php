@@ -43,4 +43,16 @@ class AuditableTraitObserver
             $model->updated_by = $this->getAuthenticatedUserId();
         }
     }
+
+    /**
+     * Model's deleting event hook
+     *
+     * @param Model $model
+     */
+    public function deleting(Model $model)
+    {
+        if (! $model->isDirty('deleted_by')) {
+            $model->deleted_by = $this->getAuthenticatedUserId();
+        }
+    }
 }

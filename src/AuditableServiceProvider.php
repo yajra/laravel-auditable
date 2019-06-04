@@ -22,5 +22,15 @@ class AuditableServiceProvider extends ServiceProvider
         Blueprint::macro('dropAuditable', function() {
             $this->dropColumn(['created_by', 'updated_by']);
         });
+
+        Blueprint::macro('auditableWithDeletes', function() {
+            $this->unsignedInteger('created_by')->nullable()->index();
+            $this->unsignedInteger('updated_by')->nullable()->index();
+            $this->unsignedInteger('deleted_by')->nullable()->index();
+        });
+
+        Blueprint::macro('dropAuditableWithDeletes', function() {
+            $this->dropColumn(['created_by', 'updated_by', 'deleted_by']);
+        });
     }
 }

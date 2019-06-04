@@ -58,6 +58,26 @@ trait AuditableTrait
     }
 
     /**
+     * Get user model who deleted the record.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function deleter()
+    {
+        return $this->belongsTo($this->getUserInstance(), $this->getDeletedByColumn());
+    }
+
+    /**
+     * Get column name for deleted by.
+     *
+     * @return string
+     */
+    protected function getDeletedByColumn()
+    {
+        return 'deleted_by';
+    }
+
+    /**
      * Get created by user full name.
      *
      * @return string
@@ -92,6 +112,20 @@ trait AuditableTrait
     {
         if ($this->{$this->getUpdatedByColumn()}) {
             return $this->updater->first_name . ' ' . $this->updater->last_name;
+        }
+
+        return '';
+    }
+
+    /**
+     * Get deleted by user full name.
+     *
+     * @return string
+     */
+    public function getDeletedByNameAttribute()
+    {
+        if ($this->{$this->getDeletedByColumn()}) {
+            return $this->deleter->first_name . ' ' . $this->deleter->last_name;
         }
 
         return '';
