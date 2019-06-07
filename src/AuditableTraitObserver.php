@@ -14,12 +14,15 @@ class AuditableTraitObserver
      */
     public function creating(Model $model)
     {
-        if (! $model->created_by) {
-            $model->created_by = $this->getAuthenticatedUserId();
+        $createdBy = $model->getCreatedByColumn();
+        $updatedBy = $model->getUpdatedByColumn();
+
+        if (! $model->$createdBy) {
+            $model->$createdBy = $this->getAuthenticatedUserId();
         }
 
-        if (! $model->updated_by) {
-            $model->updated_by = $this->getAuthenticatedUserId();
+        if (! $model->$updatedBy) {
+            $model->$updatedBy = $this->getAuthenticatedUserId();
         }
     }
 
@@ -40,8 +43,10 @@ class AuditableTraitObserver
      */
     public function updating(Model $model)
     {
-        if (! $model->isDirty('updated_by')) {
-            $model->updated_by = $this->getAuthenticatedUserId();
+        $updatedBy = $model->getUpdatedByColumn();
+
+        if (! $model->isDirty($updatedBy)) {
+            $model->$updatedBy = $this->getAuthenticatedUserId();
         }
     }
 
@@ -52,9 +57,11 @@ class AuditableTraitObserver
      */
     public function deleting(Model $model)
     {
-        if (Schema::hasColumn($model->getTable(), 'deleted_by')) {
-            if (! $model->deleted_by) {
-                $model->deleted_by = $this->getAuthenticatedUserId();
+        $deletedBy = $model->getDeletedByColumn();
+
+        if (Schema::hasColumn($model->getTable(), $deletedBy)) {
+            if (! $model->$deletedBy) {
+                $model->$deletedBy = $this->getAuthenticatedUserId();
             }
         }
     }
