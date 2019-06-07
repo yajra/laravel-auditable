@@ -34,7 +34,7 @@ trait AuditableTrait
      */
     protected function getCreatedByColumn()
     {
-        return 'created_by';
+        return defined('static::CREATED_BY') ? static::CREATED_BY : 'created_by';
     }
 
     /**
@@ -54,7 +54,7 @@ trait AuditableTrait
      */
     protected function getUpdatedByColumn()
     {
-        return 'updated_by';
+        return defined('static::UPDATED_BY') ? static::UPDATED_BY : 'updated_by';
     }
 
     /**
@@ -74,7 +74,7 @@ trait AuditableTrait
      */
     protected function getDeletedByColumn()
     {
-        return 'deleted_by';
+        return defined('static::DELETED_BY') ? static::DELETED_BY : 'deleted_by';
     }
 
     /**
