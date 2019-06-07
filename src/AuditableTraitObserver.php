@@ -3,6 +3,7 @@
 namespace Yajra\Auditable;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema;
 
 class AuditableTraitObserver
 {
@@ -51,8 +52,10 @@ class AuditableTraitObserver
      */
     public function deleting(Model $model)
     {
-        if (! $model->deleted_by) {
-            $model->deleted_by = $this->getAuthenticatedUserId();
+        if (Schema::hasColumn($model->getTable(), 'deleted_by')) {
+            if (! $model->deleted_by) {
+                $model->deleted_by = $this->getAuthenticatedUserId();
+            }
         }
     }
 }
