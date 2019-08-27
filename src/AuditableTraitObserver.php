@@ -59,10 +59,9 @@ class AuditableTraitObserver
     {
         $deletedBy = $model->getDeletedByColumn();
 
-        if (Schema::hasColumn($model->getTable(), $deletedBy)) {
-            if (! $model->$deletedBy) {
-                $model->$deletedBy = $this->getAuthenticatedUserId();
-            }
+        if ($model->getConnection()->getSchemaBuilder()->hasColumn($model->getTable(), $deletedBy)) {
+            $model->$deletedBy = $this->getAuthenticatedUserId();
+            $model->save();
         }
     }
 }
