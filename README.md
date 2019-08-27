@@ -3,8 +3,6 @@
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
 Laravel Auditable is a simple Laravel auditing package for your Eloquent Model.
@@ -109,8 +107,6 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 [link-packagist]: https://packagist.org/packages/yajra/laravel-auditable
 [link-travis]: https://travis-ci.org/yajra/laravel-auditable
-[link-scrutinizer]: https://scrutinizer-ci.com/g/yajra/laravel-auditable/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/yajra/laravel-auditable
 [link-downloads]: https://packagist.org/packages/yajra/laravel-auditable
 [link-author]: https://github.com/yajra
 [link-contributors]: ../../contributors
