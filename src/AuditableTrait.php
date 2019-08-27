@@ -4,6 +4,11 @@ namespace Yajra\Auditable;
 
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * @property mixed creator
+ * @property mixed updater
+ * @property mixed deleter
+ */
 trait AuditableTrait
 {
     /**
@@ -23,7 +28,17 @@ trait AuditableTrait
      */
     public function creator()
     {
-        return $this->belongsTo($this->getUserInstance(), $this->getCreatedByColumn());
+        return $this->belongsTo($this->getUserClass(), $this->getCreatedByColumn())->withDefault();
+    }
+
+    /**
+     * Get user class.
+     *
+     * @return string
+     */
+    protected function getUserClass()
+    {
+        return config('auth.providers.users.model', 'App\User');
     }
 
     /**
@@ -43,7 +58,19 @@ trait AuditableTrait
      */
     public function updater()
     {
-        return $this->belongsTo($this->getUserInstance(), $this->getUpdatedByColumn());
+        return $this->belongsTo($this->getUserClass(), $this->getUpdatedByColumn())->withDefault();
+    }
+
+    /**
+     * Get Laravel's user class instance.
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function getUserInstance()
+    {
+        $class = $this->getUserClass();
+
+        return new $class;
     }
 
     /**
@@ -63,7 +90,7 @@ trait AuditableTrait
      */
     public function deleter()
     {
-        return $this->belongsTo($this->getUserInstance(), $this->getDeletedByColumn());
+        return $this->belongsTo($this->getUserClass(), $this->getDeletedByColumn())->withDefault();
     }
 
     /**
@@ -88,18 +115,6 @@ trait AuditableTrait
         }
 
         return '';
-    }
-
-    /**
-     * Get Laravel's user class instance.
-     *
-     * @return \Illuminate\Database\Eloquent\Model
-     */
-    public function getUserInstance()
-    {
-        $class = config('auth.providers.users.model', 'App\User');
-
-        return new $class;
     }
 
     /**
