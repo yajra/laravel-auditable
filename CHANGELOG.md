@@ -2,6 +2,12 @@
 
 All Notable changes to `laravel-auditable` will be documented in this file.
 
+## v3.1.0 - 2019-08-27
+- Add default value on relations.
+- Add method to get user class.
+- Use name attribute.
+> Note: add name getter to present first & last name if needed.
+
 ## v3.0.0 - 2019-08-27
 - Add auditing for delete events
   - New `deleted_by` column, `deleter` relationship and `deletedByName` accessor
