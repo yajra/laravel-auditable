@@ -38,6 +38,10 @@ trait AuditableTrait
      */
     protected function getUserClass()
     {
+        if (property_exists($this, 'auditUser')) {
+            return $this->auditUser;
+        }
+
         return config('auth.providers.users.model', 'App\User');
     }
 
