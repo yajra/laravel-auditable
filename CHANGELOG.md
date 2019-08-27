@@ -2,6 +2,9 @@
 
 All Notable changes to `laravel-auditable` will be documented in this file.
 
+## v3.1.1 - 2019-08-27
+- Add option to set custom user via auditUser property.
+
 ## v3.1.0 - 2019-08-27
 - Add default value on relations.
 - Add method to get user class.
