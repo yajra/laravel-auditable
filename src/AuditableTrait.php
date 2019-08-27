@@ -111,7 +111,7 @@ trait AuditableTrait
     public function getCreatedByNameAttribute()
     {
         if ($this->{$this->getCreatedByColumn()}) {
-            return $this->creator->first_name . ' ' . $this->creator->last_name;
+            return $this->creator->name;
         }
 
         return '';
@@ -125,7 +125,7 @@ trait AuditableTrait
     public function getUpdatedByNameAttribute()
     {
         if ($this->{$this->getUpdatedByColumn()}) {
-            return $this->updater->first_name . ' ' . $this->updater->last_name;
+            return $this->updater->name;
         }
 
         return '';
@@ -139,7 +139,7 @@ trait AuditableTrait
     public function getDeletedByNameAttribute()
     {
         if ($this->{$this->getDeletedByColumn()}) {
-            return $this->deleter->first_name . ' ' . $this->deleter->last_name;
+            return $this->deleter->name;
         }
 
         return '';
