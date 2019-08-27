@@ -2,14 +2,13 @@
 
 All Notable changes to `laravel-auditable` will be documented in this file.
 
-## v2.1.1 - 2019-06-07
-- Made column names configurable using model constants: `CREATED_BY`, `UPDATED_BY`, `DELETED_BY`
-
-## v2.1.0 - 2019-06-04
+## v3.0.0 - UNRELEASED
 - Add auditing for delete events
   - New `deleted_by` column, `deleter` relationship and `deletedByName` accessor
   - Add `auditableWithDeletes()` and `dropAuditableWithDeletes()` methods for migrations
 - Use `null` user ID if no user found instead of `0`
+- Made column names configurable using model constants: `CREATED_BY`, `UPDATED_BY`, `DELETED_BY`
+- Use `unsignedBigIncrements` for migration.
 
 ## v2.0.1 - 2017-12-28
 - Fix travis.
