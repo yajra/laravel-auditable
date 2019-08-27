@@ -15,8 +15,8 @@ class AuditableServiceProvider extends ServiceProvider
     public function register()
     {
         Blueprint::macro('auditable', function() {
-            $this->unsignedInteger('created_by')->nullable()->index();
-            $this->unsignedInteger('updated_by')->nullable()->index();
+            $this->unsignedBigInteger('created_by')->nullable()->index();
+            $this->unsignedBigInteger('updated_by')->nullable()->index();
         });
 
         Blueprint::macro('dropAuditable', function() {
@@ -24,9 +24,9 @@ class AuditableServiceProvider extends ServiceProvider
         });
 
         Blueprint::macro('auditableWithDeletes', function() {
-            $this->unsignedInteger('created_by')->nullable()->index();
-            $this->unsignedInteger('updated_by')->nullable()->index();
-            $this->unsignedInteger('deleted_by')->nullable()->index();
+            $this->unsignedBigInteger('created_by')->nullable()->index();
+            $this->unsignedBigInteger('updated_by')->nullable()->index();
+            $this->unsignedBigInteger('deleted_by')->nullable()->index();
         });
 
         Blueprint::macro('dropAuditableWithDeletes', function() {
