@@ -2,7 +2,6 @@
 
 namespace Yajra\Auditable;
 
-use App\User;
 use Illuminate\Database\Eloquent\Builder;
 
 trait AuditableTrait
@@ -98,7 +97,7 @@ trait AuditableTrait
      */
     public function getUserInstance()
     {
-        $class = config('auth.providers.users.model', User::class);
+        $class = config('auth.providers.users.model', 'App\User');
 
         return new $class;
     }
