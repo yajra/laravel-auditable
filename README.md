@@ -89,11 +89,6 @@ If you discover any security related issues, please email aqangeles@gmail.com in
 - [Arjay Angeles][link-author]
 - [All Contributors][link-contributors]
 
-## Buy me a coffee
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/yajra)
-<a href='https://www.patreon.com/bePatron?u=4521203'><img alt='Become a Patron' src='https://s3.amazonaws.com/patreon_public_assets/toolbox/patreon.png' border='0' width='200px' ></a>
-
-
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
