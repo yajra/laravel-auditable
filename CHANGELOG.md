@@ -2,6 +2,13 @@
 
 All Notable changes to `laravel-auditable` will be documented in this file.
 
+## v4.0.0 - 2019-09-19
+
+- Drop support for Laravel 5.8 and below.
+- Add `AuditableWithDeletesTrait` to be used along with `SoftDeletes`.
+- Add `restoring` event that sets `deleted_by` to null when restored.
+- Fix [#7].
+
 ## v3.2.0 - 2019-09-04
 - Add support for Laravel 6.
 
