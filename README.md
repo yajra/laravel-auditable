@@ -54,6 +54,9 @@ Schema::create('users', function (Blueprint $table) {
 });
 ```
 
+Afterwards, you need to use `AuditableWithDeletesTrait` on your model.
+
+
 ## Dropping columns
 
 You can drop auditable columns using `dropAuditable()` method, or `dropAuditableWithDeletes()` if using soft deletes.
