@@ -56,6 +56,17 @@ Schema::create('users', function (Blueprint $table) {
 
 Afterwards, you need to use `AuditableWithDeletesTrait` on your model.
 
+``` php
+namespace App;
+
+use Yajra\Auditable\AuditableWithDeletesTrait;
+
+class User extends Model
+{
+    use AuditableWithDeletesTrait, SoftDeletes;
+}
+```
+
 
 ## Dropping columns
 
