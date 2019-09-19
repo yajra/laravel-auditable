@@ -49,19 +49,4 @@ class AuditableTraitObserver
             $model->$updatedBy = $this->getAuthenticatedUserId();
         }
     }
-
-    /**
-     * Model's deleting event hook
-     *
-     * @param Model $model
-     */
-    public function deleting(Model $model)
-    {
-        $deletedBy = $model->getDeletedByColumn();
-
-        if ($model->getConnection()->getSchemaBuilder()->hasColumn($model->getTable(), $deletedBy)) {
-            $model->$deletedBy = $this->getAuthenticatedUserId();
-            $model->save();
-        }
-    }
 }

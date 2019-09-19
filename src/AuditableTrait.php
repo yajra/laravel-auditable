@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Builder;
 /**
  * @property mixed creator
  * @property mixed updater
- * @property mixed deleter
  */
 trait AuditableTrait
 {
@@ -66,18 +65,6 @@ trait AuditableTrait
     }
 
     /**
-     * Get Laravel's user class instance.
-     *
-     * @return \Illuminate\Database\Eloquent\Model
-     */
-    public function getUserInstance()
-    {
-        $class = $this->getUserClass();
-
-        return new $class;
-    }
-
-    /**
      * Get column name for updated by.
      *
      * @return string
@@ -88,37 +75,13 @@ trait AuditableTrait
     }
 
     /**
-     * Get user model who deleted the record.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function deleter()
-    {
-        return $this->belongsTo($this->getUserClass(), $this->getDeletedByColumn())->withDefault();
-    }
-
-    /**
-     * Get column name for deleted by.
-     *
-     * @return string
-     */
-    public function getDeletedByColumn()
-    {
-        return defined('static::DELETED_BY') ? static::DELETED_BY : 'deleted_by';
-    }
-
-    /**
      * Get created by user full name.
      *
      * @return string
      */
     public function getCreatedByNameAttribute()
     {
-        if ($this->{$this->getCreatedByColumn()}) {
-            return $this->creator->name;
-        }
-
-        return '';
+        return $this->creator->name ?? '';
     }
 
     /**
@@ -128,25 +91,7 @@ trait AuditableTrait
      */
     public function getUpdatedByNameAttribute()
     {
-        if ($this->{$this->getUpdatedByColumn()}) {
-            return $this->updater->name;
-        }
-
-        return '';
-    }
-
-    /**
-     * Get deleted by user full name.
-     *
-     * @return string
-     */
-    public function getDeletedByNameAttribute()
-    {
-        if ($this->{$this->getDeletedByColumn()}) {
-            return $this->deleter->name;
-        }
-
-        return '';
+        return $this->updater->name ?? '';
     }
 
     /**
@@ -168,5 +113,17 @@ trait AuditableTrait
     public function getQualifiedUserIdColumn()
     {
         return $this->getTable() . '.' . $this->getUserInstance()->getKey();
+    }
+
+    /**
+     * Get Laravel's user class instance.
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function getUserInstance()
+    {
+        $class = $this->getUserClass();
+
+        return new $class;
     }
 }
