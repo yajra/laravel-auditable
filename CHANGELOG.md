@@ -2,6 +2,10 @@
 
 All Notable changes to `laravel-auditable` will be documented in this file.
 
+## v4.0.1 - 2020-02-22
+
+- Fix touch event of relation, not updating updated_by of related table.
+
 ## v4.0.0 - 2019-09-19
 
 - Drop support for Laravel 5.8 and below.
