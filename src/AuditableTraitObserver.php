@@ -49,4 +49,19 @@ class AuditableTraitObserver
             $model->$updatedBy = $this->getAuthenticatedUserId();
         }
     }
+
+    /**
+     * Set updatedBy column on save if value is not the same.
+     *
+     * @param \Illuminate\Database\Eloquent\Model $model
+     */
+    public function saved(Model $model)
+    {
+        $updatedBy = $model->getUpdatedByColumn();
+
+        if ($model->$updatedBy <> $this->getAuthenticatedUserId()) {
+            $model->$updatedBy = $this->getAuthenticatedUserId();
+            $model->save();
+        }
+    }
 }
