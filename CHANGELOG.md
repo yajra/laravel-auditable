@@ -2,6 +2,10 @@
 
 All Notable changes to `laravel-auditable` will be documented in this file.
 
+## v4.2.0 - 2020-07-03
+
+- Add configurable creator and updater default values if not set.
+
 ## v4.1.0 - 2020-03-07
 
 - Allow Laravel 7 #9, Fix #8.
