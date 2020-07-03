@@ -27,7 +27,8 @@ trait AuditableTrait
      */
     public function creator()
     {
-        return $this->belongsTo($this->getUserClass(), $this->getCreatedByColumn())->withDefault();
+        return $this->belongsTo($this->getUserClass(), $this->getCreatedByColumn())
+                    ->withDefault(config('auditable.defaults.creator'));
     }
 
     /**
@@ -61,7 +62,8 @@ trait AuditableTrait
      */
     public function updater()
     {
-        return $this->belongsTo($this->getUserClass(), $this->getUpdatedByColumn())->withDefault();
+        return $this->belongsTo($this->getUserClass(), $this->getUpdatedByColumn())
+                    ->withDefault(config('auditable.defaults.updater'));
     }
 
     /**
