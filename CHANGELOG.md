@@ -2,6 +2,10 @@
 
 All Notable changes to `laravel-auditable` will be documented in this file.
 
+## v4.3.0 - 2020-09-09
+
+- Add support for Laravel 8 [#10].
+
 ## v4.2.0 - 2020-07-03
 
 - Add configurable creator and updater default values if not set.
