@@ -2,6 +2,11 @@
 
 All Notable changes to `laravel-auditable` will be documented in this file.
 
+## v4.3.1 - 2021-06-03
+
+- Don't touch updated_by if unauthenticated [#17]
+- Fix [#16]
+
 ## v4.3.0 - 2020-09-09
 
 - Add support for Laravel 8 [#10].
