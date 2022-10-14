@@ -3,12 +3,12 @@
 return [
     'defaults' => [
         'creator' => [
-            'name' => ''
+            'name' => '',
             // add creator default values if not set
         ],
 
         'updater' => [
-            'name' => ''
+            'name' => '',
             // add updater default values if not set
         ],
     ],
