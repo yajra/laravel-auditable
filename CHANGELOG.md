@@ -2,6 +2,11 @@
 
 All Notable changes to `laravel-auditable` will be documented in this file.
 
+## v4.5.0 - 2023-02-19
+
+- Laravel 10 Support
+- fix: phpunit 10 #25
+
 ## v4.4.0 - 2022-02-09
 
 - Laravel 9 Support #18
