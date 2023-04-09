@@ -11,5 +11,10 @@ return [
             'name' => '',
             // add updater default values if not set
         ],
+
+        'deleter' => [
+            'name' => '',
+            // add deleter default values if not set
+        ],
     ],
 ];
