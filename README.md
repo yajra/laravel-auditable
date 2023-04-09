@@ -14,6 +14,14 @@ This package automatically inserts/updates an audit log on your table on who cre
 composer require yajra/laravel-auditable
 ```
 
+## Publish config file
+
+If you want to modify the `withDefault` option on auditable columns, you may publish the config file.
+
+```bash
+php artisan vendor:publish --tag=auditable
+```
+
 ## Usage
 
 Update your model's migration and add `created_by` and `updated_by` field using the `auditable()` blueprint macro.
