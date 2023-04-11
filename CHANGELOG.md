@@ -2,6 +2,10 @@
 
 All Notable changes to `laravel-auditable` will be documented in this file.
 
+## v4.6.0 - 2023-04-11
+
+- feat: Add withDefault on deleter #26
+
 ## v4.5.0 - 2023-02-19
 
 - Laravel 10 Support
