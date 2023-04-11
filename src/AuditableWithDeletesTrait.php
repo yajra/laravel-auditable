@@ -26,7 +26,8 @@ trait AuditableWithDeletesTrait
      */
     public function deleter()
     {
-        return $this->belongsTo($this->getUserClass(), $this->getDeletedByColumn())->withDefault();
+        return $this->belongsTo($this->getUserClass(), $this->getDeletedByColumn())
+            ->withDefault(config('auditable.defaults.deleter'));
     }
 
     /**
