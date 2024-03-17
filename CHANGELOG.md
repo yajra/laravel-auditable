@@ -2,6 +2,14 @@
 
 All Notable changes to `laravel-auditable` will be documented in this file.
 
+## [Unreleased]
+
+- Laravel 11 Support
+- Implement static analysis tools
+- Add GitHub Actions for CI/CD
+- Add Pint and Rector
+- Upgrade code to PHP 8.2 coding standards
+
 ## v4.6.0 - 2023-04-11
 
 - feat: Add withDefault on deleter #26
