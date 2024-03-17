@@ -8,59 +8,60 @@ class AuditableTraitObserver
 {
     /**
      * Model's creating event hook.
-     *
-     * @param Model $model
      */
-    public function creating(Model $model)
+    public function creating(Model $model): void
     {
-        $createdBy = $model->getCreatedByColumn();
-        $updatedBy = $model->getUpdatedByColumn();
+        if (method_exists($model, 'getCreatedByColumn')) {
+            $createdBy = $model->getCreatedByColumn();
 
-        if (! $model->$createdBy) {
-            $model->$createdBy = $this->getAuthenticatedUserId();
+            if (! $model->$createdBy) {
+                $model->$createdBy = $this->getAuthenticatedUserId();
+            }
         }
 
-        if (! $model->$updatedBy) {
-            $model->$updatedBy = $this->getAuthenticatedUserId();
+        if (method_exists($model, 'getUpdatedByColumn')) {
+            $updatedBy = $model->getUpdatedByColumn();
+
+            if (! $model->$updatedBy) {
+                $model->$updatedBy = $this->getAuthenticatedUserId();
+            }
         }
     }
 
     /**
      * Get authenticated user id depending on model's auth guard.
-     *
-     * @return int
      */
-    protected function getAuthenticatedUserId()
+    protected function getAuthenticatedUserId(): int|string|null
     {
         return auth()->check() ? auth()->id() : null;
     }
 
     /**
      * Model's updating event hook.
-     *
-     * @param Model $model
      */
-    public function updating(Model $model)
+    public function updating(Model $model): void
     {
-        $updatedBy = $model->getUpdatedByColumn();
+        if (method_exists($model, 'getUpdatedByColumn')) {
+            $updatedBy = $model->getUpdatedByColumn();
 
-        if (! $model->isDirty($updatedBy)) {
-            $model->$updatedBy = $this->getAuthenticatedUserId();
+            if (! $model->isDirty($updatedBy)) {
+                $model->$updatedBy = $this->getAuthenticatedUserId();
+            }
         }
     }
 
     /**
      * Set updatedBy column on save if value is not the same.
-     *
-     * @param \Illuminate\Database\Eloquent\Model $model
      */
-    public function saved(Model $model)
+    public function saved(Model $model): void
     {
-        $updatedBy = $model->getUpdatedByColumn();
+        if (method_exists($model, 'getUpdatedByColumn')) {
+            $updatedBy = $model->getUpdatedByColumn();
 
-        if ($this->getAuthenticatedUserId() && $model->$updatedBy <> $this->getAuthenticatedUserId()) {
-            $model->$updatedBy = $this->getAuthenticatedUserId();
-            $model->save();
+            if ($this->getAuthenticatedUserId() && $this->getAuthenticatedUserId() != $model->$updatedBy) {
+                $model->$updatedBy = $this->getAuthenticatedUserId();
+                $model->save();
+            }
         }
     }
 }

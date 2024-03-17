@@ -8,36 +8,34 @@ class AuditableWithDeletesTraitObserver
 {
     /**
      * Model's deleting event hook
-     *
-     * @param Model $model
      */
-    public function deleting(Model $model)
+    public function deleting(Model $model): void
     {
-        $deletedBy = $model->getDeletedByColumn();
+        if (method_exists($model, 'getDeletedByColumn')) {
+            $deletedBy = $model->getDeletedByColumn();
 
-        $model->$deletedBy = $this->getAuthenticatedUserId();
-        $model->save();
+            $model->$deletedBy = $this->getAuthenticatedUserId();
+            $model->save();
+        }
     }
 
     /**
      * Get authenticated user id depending on model's auth guard.
-     *
-     * @return int
      */
-    protected function getAuthenticatedUserId()
+    protected function getAuthenticatedUserId(): int|string|null
     {
         return auth()->check() ? auth()->id() : null;
     }
 
     /**
      * Model's restoring event hook
-     *
-     * @param Model $model
      */
-    public function restoring(Model $model)
+    public function restoring(Model $model): void
     {
-        $deletedBy = $model->getDeletedByColumn();
+        if (method_exists($model, 'getDeletedByColumn')) {
+            $deletedBy = $model->getDeletedByColumn();
 
-        $model->$deletedBy = null;
+            $model->$deletedBy = null;
+        }
     }
 }

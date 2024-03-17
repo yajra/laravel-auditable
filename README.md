@@ -2,16 +2,25 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
+
+[![Continuous Integration](https://github.com/yajra/laravel-auditable/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/yajra/laravel-auditable/actions/workflows/continuous-integration.yml)
+[![Static Analysis](https://github.com/yajra/laravel-auditable/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/yajra/laravel-auditable/actions/workflows/static-analysis.yml)
 [![Total Downloads][ico-downloads]][link-downloads]
 
 Laravel Auditable is a simple Laravel auditing package for your Eloquent Model.
 This package automatically inserts/updates an audit log on your table on who created and last updated the record.
 
+## Laravel Version Compatibility
+
+| Laravel  | Package |
+|:---------|:--------|
+| 5.x-10.x | 4.x     |
+| 11.x     | 11.x    |
+
 ## Install via Composer
 
 ```bash
-composer require yajra/laravel-auditable
+composer require yajra/laravel-auditable:^11
 ```
 
 ## Publish config file

@@ -3,40 +3,36 @@
 namespace Yajra\Auditable;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property mixed creator
- * @property mixed updater
+ * @property Model $creator
+ * @property Model $updater
  */
 trait AuditableTrait
 {
     /**
      * Boot the audit trait for a model.
-     *
-     * @return void
      */
-    public static function bootAuditableTrait()
+    public static function bootAuditableTrait(): void
     {
         static::observe(new AuditableTraitObserver);
     }
 
     /**
      * Get user model who created the record.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function creator()
+    public function creator(): BelongsTo
     {
         return $this->belongsTo($this->getUserClass(), $this->getCreatedByColumn())
-                    ->withDefault(config('auditable.defaults.creator'));
+            ->withDefault(config('auditable.defaults.creator'));
     }
 
     /**
      * Get user class.
-     *
-     * @return string
      */
-    protected function getUserClass()
+    protected function getUserClass(): string
     {
         if (property_exists($this, 'auditUser')) {
             return $this->auditUser;
@@ -47,82 +43,65 @@ trait AuditableTrait
 
     /**
      * Get column name for created by.
-     *
-     * @return string
      */
-    public function getCreatedByColumn()
+    public function getCreatedByColumn(): string
     {
         return defined('static::CREATED_BY') ? static::CREATED_BY : 'created_by';
     }
 
     /**
      * Get user model who updated the record.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function updater()
+    public function updater(): BelongsTo
     {
         return $this->belongsTo($this->getUserClass(), $this->getUpdatedByColumn())
-                    ->withDefault(config('auditable.defaults.updater'));
+            ->withDefault(config('auditable.defaults.updater'));
     }
 
     /**
      * Get column name for updated by.
-     *
-     * @return string
      */
-    public function getUpdatedByColumn()
+    public function getUpdatedByColumn(): string
     {
         return defined('static::UPDATED_BY') ? static::UPDATED_BY : 'updated_by';
     }
 
     /**
      * Get created by user full name.
-     *
-     * @return string
      */
-    public function getCreatedByNameAttribute()
+    public function getCreatedByNameAttribute(): string
     {
         return $this->creator->name ?? '';
     }
 
     /**
      * Get updated by user full name.
-     *
-     * @return string
      */
-    public function getUpdatedByNameAttribute()
+    public function getUpdatedByNameAttribute(): string
     {
         return $this->updater->name ?? '';
     }
 
     /**
      * Query scope to limit results to own records.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeOwned(Builder $query)
+    public function scopeOwned(Builder $query): Builder
     {
         return $query->where($this->getQualifiedUserIdColumn(), auth()->id());
     }
 
     /**
      * Get qualified column name for user id.
-     *
-     * @return string
      */
-    public function getQualifiedUserIdColumn()
+    public function getQualifiedUserIdColumn(): string
     {
-        return $this->getTable() . '.' . $this->getUserInstance()->getKey();
+        return $this->getTable().'.'.$this->getUserInstance()->getKey();
     }
 
     /**
      * Get Laravel's user class instance.
-     *
-     * @return \Illuminate\Database\Eloquent\Model
      */
-    public function getUserInstance()
+    public function getUserInstance(): Model
     {
         $class = $this->getUserClass();
 
