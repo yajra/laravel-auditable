@@ -25,7 +25,14 @@
         "larastan/larastan": "^2.9.1",
         "laravel/pint": "^1.14",
         "rector/rector": "^1.0",
-        "orchestra/testbench": "^9.0"
+        "orchestra/testbench": "^9.0",
+        "pestphp/pest": "^2.34",
+        "pestphp/pest-plugin-laravel": "^2.3"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "autoload": {
         "psr-4": {
@@ -34,7 +41,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Yajra\\Auditable\\Test\\": "tests"
+            "Yajra\\Auditable\\Tests\\": "tests"
         }
     },
     "extra": {

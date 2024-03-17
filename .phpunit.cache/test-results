@@ -1,0 +1,1 @@
+{"version":"pest_2.34.4","defects":[],"times":{"P\\Tests\\Unit\\ExampleTest::__pest_evaluable_example":0.004,"P\\Tests\\Feature\\MacroTest::__pest_evaluable_it_has_blueprint_macro":0.01,"P\\Tests\\Feature\\TraitTest::__pest_evaluable_it_can_add_auditing_fields":0.011}}
