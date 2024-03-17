@@ -4,7 +4,9 @@ All Notable changes to `laravel-auditable` will be documented in this file.
 
 ## [Unreleased]
 
-- Laravel 11 Support
+## v11.0.0 - 2024-03-17
+
+- Laravel 11 Support #28
 - Implement static analysis tools
 - Add GitHub Actions for CI/CD
 - Add Pint and Rector
