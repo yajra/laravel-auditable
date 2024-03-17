@@ -55,7 +55,7 @@
         }
     },
     "scripts": {
-        "test": "./vendor/bin/phpunit",
+        "test": "./vendor/bin/pest",
         "pint": "./vendor/bin/pint",
         "rector": "./vendor/bin/rector",
         "stan": "./vendor/bin/phpstan analyse --memory-limit=2G --ansi --no-progress --no-interaction --configuration=phpstan.neon.dist",
