@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yajra\Auditable;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -17,7 +19,7 @@ trait AuditableTrait
      */
     public static function bootAuditableTrait(): void
     {
-        static::observe(new AuditableTraitObserver);
+        static::observe(new AuditableTraitObserver());
     }
 
     /**
@@ -105,6 +107,6 @@ trait AuditableTrait
     {
         $class = $this->getUserClass();
 
-        return new $class;
+        return new $class();
     }
 }
