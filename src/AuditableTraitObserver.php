@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yajra\Auditable;
 
 use Illuminate\Database\Eloquent\Model;
@@ -58,7 +60,7 @@ class AuditableTraitObserver
         if (method_exists($model, 'getUpdatedByColumn')) {
             $updatedBy = $model->getUpdatedByColumn();
 
-            if ($this->getAuthenticatedUserId() && $this->getAuthenticatedUserId() != $model->$updatedBy) {
+            if ($this->getAuthenticatedUserId() && $this->getAuthenticatedUserId() !== $model->$updatedBy) {
                 $model->$updatedBy = $this->getAuthenticatedUserId();
                 $model->save();
             }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Yajra\Auditable\Tests\App\Models\User;
 
 use function Pest\Laravel\assertDatabaseCount;

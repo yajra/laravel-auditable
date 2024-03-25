@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yajra\Auditable;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,7 +18,7 @@ trait AuditableWithDeletesTrait
      */
     public static function bootAuditableWithDeletesTrait(): void
     {
-        static::observe(new AuditableWithDeletesTraitObserver);
+        static::observe(new AuditableWithDeletesTraitObserver());
     }
 
     /**
