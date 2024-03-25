@@ -1,5 +1,5 @@
 {
-    "preset": "psr12",
+    "preset": "laravel",
     "rules": {
         "is_null": true,
         "strict_comparison": true,
