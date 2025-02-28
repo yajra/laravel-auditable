@@ -10,4 +10,6 @@ use Yajra\Auditable\AuditableTrait;
 class User extends Authenticatable
 {
     use AuditableTrait;
+
+    protected $guarded = [];
 }
