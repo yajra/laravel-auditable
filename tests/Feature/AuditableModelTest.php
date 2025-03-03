@@ -61,14 +61,13 @@ test('a model wont be updated if edited by another user without it being dirty',
         'email' => 'jane@example.com',
     ]);
 
-    DB::table('users')->insert([
-        'name' => 'User 3',
-        'email' => 'user_3@example.com',
+    DB::table('posts')->insert([
+        'title' => 'Hello World',
         'created_by' => $anotherUser->id,
         'updated_by' => $anotherUser->id,
     ]);
 
-    $model = User::where('email', 'user_3@example.com')->first();
+    $model = Post::first();
 
     expect($model->created_by)->toBe($anotherUser->id);
     expect($model->updated_by)->toBe($anotherUser->id);
