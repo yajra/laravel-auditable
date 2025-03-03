@@ -48,7 +48,6 @@ test('a post can be soft deleted with audit', function () {
     expect($post->deleted_by)->toBe($user->id);
 });
 
-
 test('a model wont be updated if edited by another user without it being dirty', function () {
     $user = User::create([
         'name' => 'John Doe',
