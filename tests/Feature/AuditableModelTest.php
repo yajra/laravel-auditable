@@ -56,7 +56,7 @@ test('a post can be created without audit', function () {
 
     actingAs($user);
 
-    $post = new Post();
+    $post = new Post;
     $post->title = 'Hello World';
     $post->auditable = false;
     $post->save();
