@@ -9,9 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property Model $creator
  * @property Model $updater
+ * @property bool $auditable
  */
 trait AuditableTrait
 {
+    public bool $auditable = true;
+
     /**
      * Boot the audit trait for a model.
      */
