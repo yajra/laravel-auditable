@@ -48,32 +48,27 @@ test('a post can be soft deleted with audit', function () {
     expect($post->deleted_by)->toBe($user->id);
 });
 
-test('a model wont be updated if edited by another user without it being dirty', function () {
-    $user = User::create([
+test('a post can be created without audit', function () {
+    $user = User::forceCreate([
         'name' => 'John Doe',
         'email' => 'john@example.com',
     ]);
 
     actingAs($user);
 
-    $anotherUser = User::create([
-        'name' => 'Jane Doe',
-        'email' => 'jane@example.com',
-    ]);
+    $post = new Post();
+    $post->title = 'Hello World';
+    $post->auditable = false;
+    $post->save();
 
-    DB::table('posts')->insert([
-        'title' => 'Hello World',
-        'created_by' => $anotherUser->id,
-        'updated_by' => $anotherUser->id,
-    ]);
+    expect($post->created_by)->toBe(null);
+    expect($post->updated_by)->toBe(null);
+    expect($post->deleted_by)->toBe(null);
 
-    $model = Post::first();
+    $post->auditable = true;
+    $post->title = 'Hello World 2';
+    $post->save();
 
-    expect($model->created_by)->toBe($anotherUser->id);
-    expect($model->updated_by)->toBe($anotherUser->id);
-
-    $model->save();
-
-    expect($model->created_by)->toBe($anotherUser->id);
-    expect($model->updated_by)->toBe($anotherUser->id);
+    expect($post->updated_by)->toBe($user->id);
+    expect($post->deleted_by)->toBe(null);
 });

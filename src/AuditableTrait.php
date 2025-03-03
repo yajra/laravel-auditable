@@ -12,6 +12,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 trait AuditableTrait
 {
+
+    public $auditable = true;
+    
     /**
      * Boot the audit trait for a model.
      */
