@@ -58,7 +58,7 @@ class AuditableTraitObserver
         if (method_exists($model, 'getUpdatedByColumn')) {
             $updatedBy = $model->getUpdatedByColumn();
 
-            if ($this->getAuthenticatedUserId() && $this->getAuthenticatedUserId() != $model->$updatedBy) {
+            if ($this->getAuthenticatedUserId() && $this->getAuthenticatedUserId() != $model->$updatedBy && $model->isDirty()) {
                 $model->$updatedBy = $this->getAuthenticatedUserId();
                 $model->save();
             }
