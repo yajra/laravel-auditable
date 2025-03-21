@@ -14,7 +14,7 @@ class AuditableTraitObserver
         if (method_exists($model, 'getCreatedByColumn')) {
             $createdBy = $model->getCreatedByColumn();
 
-            if (! $model->$createdBy) {
+            if (!$model->$createdBy) {
                 $model->$createdBy = $this->getAuthenticatedUserId();
             }
         }
@@ -22,7 +22,7 @@ class AuditableTraitObserver
         if (method_exists($model, 'getUpdatedByColumn')) {
             $updatedBy = $model->getUpdatedByColumn();
 
-            if (! $model->$updatedBy) {
+            if (!$model->$updatedBy) {
                 $model->$updatedBy = $this->getAuthenticatedUserId();
             }
         }
@@ -44,7 +44,7 @@ class AuditableTraitObserver
         if (method_exists($model, 'getUpdatedByColumn')) {
             $updatedBy = $model->getUpdatedByColumn();
 
-            if (! $model->isDirty($updatedBy)) {
+            if (!$model->isDirty($updatedBy)) {
                 $model->$updatedBy = $this->getAuthenticatedUserId();
             }
         }
@@ -60,7 +60,7 @@ class AuditableTraitObserver
 
             if ($this->getAuthenticatedUserId() && $this->getAuthenticatedUserId() != $model->$updatedBy && $model->isDirty()) {
                 $model->$updatedBy = $this->getAuthenticatedUserId();
-                $model->save();
+                $model->saveQuietly();
             }
         }
     }
