@@ -15,7 +15,7 @@ class AuditableWithDeletesTraitObserver
             $deletedBy = $model->getDeletedByColumn();
 
             $model->$deletedBy = $this->getAuthenticatedUserId();
-            $model->save(['timestamps' => false]);
+            $model->save();
         }
     }
 
