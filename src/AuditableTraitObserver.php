@@ -60,7 +60,7 @@ class AuditableTraitObserver
 
             if ($this->getAuthenticatedUserId() && $this->getAuthenticatedUserId() != $model->$updatedBy && $model->isDirty()) {
                 $model->$updatedBy = $this->getAuthenticatedUserId();
-                $model->save();
+                $model->saveQuietly();
             }
         }
     }
