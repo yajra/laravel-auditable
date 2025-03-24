@@ -11,7 +11,7 @@ class AuditableTraitObserver
      */
     public function creating(Model $model): void
     {
-        if (method_exists($model, 'getCreatedByColumn') && $model->auditable) {
+        if (method_exists($model, 'getCreatedByColumn') && $model->isAuditable()) {
             $createdBy = $model->getCreatedByColumn();
 
             if (! $model->$createdBy) {
@@ -19,7 +19,7 @@ class AuditableTraitObserver
             }
         }
 
-        if (method_exists($model, 'getUpdatedByColumn') && $model->auditable) {
+        if (method_exists($model, 'getUpdatedByColumn') && $model->isAuditable()) {
             $updatedBy = $model->getUpdatedByColumn();
 
             if (! $model->$updatedBy) {
@@ -41,7 +41,7 @@ class AuditableTraitObserver
      */
     public function updating(Model $model): void
     {
-        if (method_exists($model, 'getUpdatedByColumn') && $model->auditable) {
+        if (method_exists($model, 'getUpdatedByColumn') && $model->isAuditable()) {
             $updatedBy = $model->getUpdatedByColumn();
 
             if (! $model->isDirty($updatedBy)) {
@@ -55,7 +55,7 @@ class AuditableTraitObserver
      */
     public function saved(Model $model): void
     {
-        if (method_exists($model, 'getUpdatedByColumn') && $model->auditable) {
+        if (method_exists($model, 'getUpdatedByColumn') && $model->isAuditable()) {
             $updatedBy = $model->getUpdatedByColumn();
 
             if ($this->getAuthenticatedUserId() && $this->getAuthenticatedUserId() != $model->$updatedBy && $model->isDirty()) {

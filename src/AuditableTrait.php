@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property Model $creator
  * @property Model $updater
- * @property bool $auditable
+ * @property bool $auditing
  */
 trait AuditableTrait
 {
-    public bool $auditable = true;
+    protected static bool $auditing = true;
 
     /**
      * Boot the audit trait for a model.
@@ -21,6 +21,29 @@ trait AuditableTrait
     public static function bootAuditableTrait(): void
     {
         static::observe(new AuditableTraitObserver);
+    }
+
+    /**
+     * Disable auditing.
+     */
+    public static function withoutAudits(callable $callback)
+    {
+        $previousState = static::$auditing;
+        static::$auditing = false;
+
+        try {
+            return $callback();
+        } finally {
+            static::$auditing = $previousState;
+        }
+    }
+
+    /**
+     * Check is auditing is enabled.
+     */
+    public function isAuditable(): bool
+    {
+        return static::$auditing;
     }
 
     /**

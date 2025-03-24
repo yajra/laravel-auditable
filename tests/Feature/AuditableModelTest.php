@@ -56,16 +56,17 @@ test('a post can be created without audit', function () {
 
     actingAs($user);
 
-    $post = new Post;
-    $post->title = 'Hello World';
-    $post->auditable = false;
-    $post->save();
+    Post::withoutAudits(function () {
+        $post = new Post;
+        $post->title = 'Hello World';
+        $post->save();
 
-    expect($post->created_by)->toBe(null);
-    expect($post->updated_by)->toBe(null);
-    expect($post->deleted_by)->toBe(null);
+        expect($post->created_by)->toBe(null);
+        expect($post->updated_by)->toBe(null);
+        expect($post->deleted_by)->toBe(null);
+    });
 
-    $post->auditable = true;
+    $post = Post::first();
     $post->title = 'Hello World 2';
     $post->save();
 
