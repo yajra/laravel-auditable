@@ -77,3 +77,29 @@ test('a model wont be updated if edited by another user without it being dirty',
     expect($model->created_by)->toBe($anotherUser->id);
     expect($model->updated_by)->toBe($anotherUser->id);
 });
+
+test('a post can be created without audit', function () {
+    $user = User::forceCreate([
+        'name' => 'John Doe',
+        'email' => 'john@example.com',
+    ]);
+
+    actingAs($user);
+
+    Post::withoutAudits(function () {
+        $post = new Post;
+        $post->title = 'Hello World';
+        $post->save();
+
+        expect($post->created_by)->toBe(null);
+        expect($post->updated_by)->toBe(null);
+        expect($post->deleted_by)->toBe(null);
+    });
+
+    $post = Post::first();
+    $post->title = 'Hello World 2';
+    $post->save();
+
+    expect($post->updated_by)->toBe($user->id);
+    expect($post->deleted_by)->toBe(null);
+});
