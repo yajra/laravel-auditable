@@ -4,6 +4,7 @@ namespace Yajra\Auditable\Tests;
 
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Yajra\Auditable\AuditableServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -17,7 +18,7 @@ abstract class TestCase extends BaseTestCase
     protected function getPackageProviders($app): array
     {
         return [
-            \Yajra\Auditable\AuditableServiceProvider::class,
+            AuditableServiceProvider::class,
         ];
     }
 }
