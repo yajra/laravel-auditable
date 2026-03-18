@@ -22,12 +22,12 @@
         "illuminate/database": "^13.0"
     },
     "require-dev": {
-        "larastan/larastan": "^3.1",
-        "laravel/pint": "^1.21",
-        "rector/rector": "^2.0.9",
+        "larastan/larastan": "^3.9.3",
+        "laravel/pint": "^1.29",
+        "rector/rector": "^2.3.9",
         "orchestra/testbench": "^11.0",
-        "pestphp/pest": "^3.7.4",
-        "pestphp/pest-plugin-laravel": "^3.1"
+        "pestphp/pest": "^4.4.2",
+        "pestphp/pest-plugin-laravel": "^4.1"
     },
     "config": {
         "allow-plugins": {
