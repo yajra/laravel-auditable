@@ -2,10 +2,11 @@
 
 namespace Yajra\Auditable;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property \Illuminate\Database\Eloquent\Model $deleter
+ * @property Model $deleter
  */
 trait AuditableWithDeletesTrait
 {
@@ -16,7 +17,9 @@ trait AuditableWithDeletesTrait
      */
     public static function bootAuditableWithDeletesTrait(): void
     {
-        static::observe(new AuditableWithDeletesTraitObserver);
+        static::whenBooted(function () {
+            static::observe(new AuditableWithDeletesTraitObserver);
+        });
     }
 
     /**

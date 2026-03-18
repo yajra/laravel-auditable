@@ -17,17 +17,17 @@
         }
     ],
     "require": {
-        "php": "^8.2",
-        "illuminate/support": "^12.0",
-        "illuminate/database": "^12.0"
+        "php": "^8.3",
+        "illuminate/support": "^13.0",
+        "illuminate/database": "^13.0"
     },
     "require-dev": {
-        "larastan/larastan": "^3.1",
-        "laravel/pint": "^1.21",
-        "rector/rector": "^2.0.9",
-        "orchestra/testbench": "^10.0",
-        "pestphp/pest": "^3.7.4",
-        "pestphp/pest-plugin-laravel": "^3.1"
+        "larastan/larastan": "^3.9.3",
+        "laravel/pint": "^1.29",
+        "rector/rector": "^2.3.9",
+        "orchestra/testbench": "^11.0",
+        "pestphp/pest": "^4.4.2",
+        "pestphp/pest-plugin-laravel": "^4.1"
     },
     "config": {
         "allow-plugins": {
@@ -46,7 +46,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "12.x-dev"
+            "dev-master": "13.x-dev"
         },
         "laravel": {
             "providers": [
