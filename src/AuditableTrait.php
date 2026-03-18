@@ -17,7 +17,9 @@ trait AuditableTrait
      */
     public static function bootAuditableTrait(): void
     {
-        static::observe(new AuditableTraitObserver);
+        static::whenBooted(function () {
+            static::observe(new AuditableTraitObserver);
+        });
     }
 
     /**

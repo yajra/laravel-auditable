@@ -17,7 +17,9 @@ trait AuditableWithDeletesTrait
      */
     public static function bootAuditableWithDeletesTrait(): void
     {
-        static::observe(new AuditableWithDeletesTraitObserver);
+        static::whenBooted(function () {
+            static::observe(new AuditableWithDeletesTraitObserver);
+        });
     }
 
     /**
