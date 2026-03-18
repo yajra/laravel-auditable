@@ -17,11 +17,12 @@ This package automatically inserts/updates an audit log on your table on who cre
 | 5.x-10.x | 4.x     |
 | 11.x     | 11.x    |
 | 12.x     | 12.x    |
+| 13.x     | 13.x    |
 
 ## Install via Composer
 
 ```bash
-composer require yajra/laravel-auditable:^12
+composer require yajra/laravel-auditable:^13
 ```
 
 ## Publish config file
