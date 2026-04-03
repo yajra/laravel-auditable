@@ -11,7 +11,7 @@ class AuditableWithDeletesTraitObserver
      */
     public function deleting(Model $model): void
     {
-        if (method_exists($model, 'getDeletedByColumn')) {
+        if (method_exists($model, 'getDeletedByColumn') && $model->isAuditable()) {
             $deletedBy = $model->getDeletedByColumn();
 
             $model->$deletedBy = $this->getAuthenticatedUserId();
@@ -32,7 +32,7 @@ class AuditableWithDeletesTraitObserver
      */
     public function restoring(Model $model): void
     {
-        if (method_exists($model, 'getDeletedByColumn')) {
+        if (method_exists($model, 'getDeletedByColumn') && $model->isAuditable()) {
             $deletedBy = $model->getDeletedByColumn();
 
             $model->$deletedBy = null;
